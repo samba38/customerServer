@@ -5,6 +5,11 @@ const path= require('path')
 const { request } = require("http")
 const app=express()
 app.use(express.json())
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://your-frontend-domain.onrender.com"],
+  })
+);
 
 const dbpath= path.join(__dirname, 'database.db')
 
@@ -16,9 +21,9 @@ const initalizeSqlDB=async ()=>{
         filename:dbpath,
         driver:sqlite3.Database
     });
-    app.listen(3000, ()=>{
-        console.log('Server running at http://localhost:3000/')
-    })
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
   } catch(e){
      console.log(`DB Error: ${e.message}`)
      process.exit(1)
