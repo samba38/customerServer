@@ -3,7 +3,9 @@ const {open}= require('sqlite')
 const sqlite3= require('sqlite3')
 const path= require('path')
 const { request } = require("http")
+const cors = require("cors");
 const app=express()
+const PORT = process.env.PORT || 5000; 
 app.use(express.json())
 app.use(
   cors({
