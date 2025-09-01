@@ -1,0 +1,35 @@
+GET http://localhost:3000/api/customers?page=2&limit=10 
+###
+GET http://localhost:3000/api/customers/1
+###
+PUT http://localhost:3000/api/customers/3
+Content-Type: application/json
+
+{
+  "first_name": "UpdatedJohn",
+  "last_name": "Cena",
+  "phone_number": "9876543210"
+}
+###
+POST http://localhost:3000/api/customers/5/addresses
+Content-Type: application/json
+
+{
+  "address_details": "123 Main Street",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "pin_code": "400001"
+}
+
+###
+GET http://localhost:3000/api/customers/5/addresses
+###
+PUT http://localhost:3000/api/addresses/3
+Content-Type: application/json
+
+{
+  "address_details": "456 Park Lane",
+  "city": "Delhi",
+  "state": "Delhi",
+  "pin_code": "110001"
+}
