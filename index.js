@@ -9,9 +9,15 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json())
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://your-frontend-domain.onrender.com"],
+    origin: [
+      "http://localhost:3000",
+      "https://customer-react-ptzb.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
   })
 );
+
 
 const dbpath= path.join(__dirname, 'database.db')
 
