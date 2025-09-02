@@ -100,7 +100,7 @@ app.put('/api/customers/:id', async (request, response) =>{
       WHERE id='${id}';
     `;
     await db.run(updateQuery)
-    response.send('Done Updation')
+    response.json({ message: "Customer updated successfully" });
 })
 
 app.delete('/api/customers/:id', async (request, response) =>{
@@ -110,7 +110,7 @@ app.delete('/api/customers/:id', async (request, response) =>{
     WHERE id='${id}';
   `;
   await db.run(deleteQuery)
-  response.send('Customer Deleted')
+  response.json({ message: "Customer deleted successfully" });
 })
 
 app.post('/api/customers/:id/addresses', async (request, response) =>{
