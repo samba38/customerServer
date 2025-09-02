@@ -7,16 +7,21 @@ const cors = require("cors");
 const app=express()
 const PORT = process.env.PORT || 5000; 
 app.use(express.json())
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "https://customer-react-ptzb.vercel.app"
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-  })
-);
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:3000").split(",");
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (curl, server-to-server, mobile, etc.)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS policy: origin not allowed"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
 
 
 const dbpath= path.join(__dirname, 'database.db')
